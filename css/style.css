@@ -48,7 +48,7 @@ body {
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
-    background: #e4e3e3;
+    background: #ffffff;
 }
 
 p {
@@ -85,7 +85,7 @@ img {
 a {
     text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
 ul {
@@ -111,16 +111,28 @@ ul {
     font-weight: 600;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
     border: none;
     font-size: 16px;
     gap: 8px;
 }
 
-.button:hover {
-    background-color: #1a5bb8;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(44, 110, 203, 0.3);
+@media (hover: hover) {
+    .button:hover {
+        background-color: #1a5bb8;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(44, 110, 203, 0.3);
+    }
+
+    .button--secondary:hover {
+        background-color: #2C6ECB;
+        color: white;
+    }
+
+    .button--white:hover {
+        background-color: #f8f9fa;
+        color: #1a5bb8;
+    }
 }
 
 .button--secondary {
@@ -129,19 +141,9 @@ ul {
     color: #2C6ECB;
 }
 
-.button--secondary:hover {
-    background-color: #2C6ECB;
-    color: white;
-}
-
 .button--white {
     background-color: white;
     color: #2C6ECB;
-}
-
-.button--white:hover {
-    background-color: #f8f9fa;
-    color: #1a5bb8;
 }
 
 /* БЭМ блок: section */
@@ -225,12 +227,14 @@ ul {
     transition: width 0.3s ease;
 }
 
-.nav__link:hover::after {
-    width: 100%;
-}
+@media (hover: hover) {
+    .nav__link:hover::after {
+        width: 100%;
+    }
 
-.nav__link:hover {
-    color: #2C6ECB;
+    .nav__link:hover {
+        color: #2C6ECB;
+    }
 }
 
 .nav__toggle {
@@ -283,7 +287,7 @@ ul {
 .hero__features {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 80px;
     margin-top: 80px;
     flex-wrap: wrap;
 }
@@ -313,13 +317,21 @@ ul {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
     border: 1px solid #f0f0f0;
+    cursor: pointer;
+    position: relative;
 }
 
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+@media (hover: hover) {
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .service-card__button:hover i {
+        transform: translateX(5px);
+    }
 }
 
 .service-card__image {
@@ -351,6 +363,8 @@ ul {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    position: relative;
+    z-index: 2;
 }
 
 .service-card__button i {
@@ -359,6 +373,16 @@ ul {
 
 .service-card__button:hover i {
     transform: translateX(5px);
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
 }
 
 /* БЭМ блок: about */
@@ -424,12 +448,18 @@ ul {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    transition:  0.3s ease;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+@media (hover: hover) {
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .project-card:hover .project-card__image {
+        transform: scale(1.05);
+    }
 }
 
 .project-card__image {
@@ -437,10 +467,6 @@ ul {
     height: 320px;
     object-fit: cover;
     transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-card__image {
-    transform: scale(1.05);
 }
 
 .project-card__overlay {
@@ -466,7 +492,7 @@ ul {
 
 /* БЭМ блок: contact */
 .contact {
-    background-color: #e4e4e4;
+    background-color: #ffffff;
 }
 
 .contact__container {
@@ -529,7 +555,7 @@ ul {
     border: 1px solid #2C6ECB;
     border-radius: 8px;
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
     font-family: 'Inter', sans-serif;
 }
 
@@ -545,9 +571,71 @@ ul {
     resize: vertical;
 }
 
+/* Form validation styles */
+.form__group {
+    position: relative;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: 500;
+    display: block;
+}
+
+.input-error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important;
+}
+
+.input-success {
+    border-color: #27ae60 !important;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2) !important;
+}
+
+.form__input:focus.input-error,
+.form__textarea:focus.input-error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3) !important;
+}
+
+.form__input:focus.input-success,
+.form__textarea:focus.input-success {
+    border-color: #27ae60 !important;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.3) !important;
+}
+
+/* Success message */
+.success-message {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+.success-message.show {
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* БЭМ блок: footer */
 .footer {
-    background: #2C2C2C;
+    background: #444343;
     color: white;
     padding: 70px 0 25px;
 }
@@ -583,12 +671,14 @@ ul {
 
 .footer__links a {
     color: #ccc;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
-.footer__links a:hover {
-    color: white;
-    padding-left: 5px;
+@media (hover: hover) {
+    .footer__links a:hover {
+        color: white;
+        padding-left: 5px;
+    }
 }
 
 .footer__social {
@@ -607,21 +697,14 @@ ul {
     border-radius: 50%;
     color: white;
     font-size: 18px;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
-.footer__social a:hover {
-    background: #2C6ECB;
-    transform: translateY(-3px);
-}
-
-.footer__copyright {
-    text-align: center;
-    margin-top: 60px;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    color: #999;
-    font-size: 15px;
+@media (hover: hover) {
+    .footer__social a:hover {
+        background: #2C6ECB;
+        transform: translateY(-3px);
+    }
 }
 
 /* Адаптивность */
@@ -676,7 +759,7 @@ ul {
         height: calc(100vh - 80px);
         padding: 40px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        transition: all 0.4s ease;
+        transition: 0.4s ease;
         gap: 20px;
     }
     
